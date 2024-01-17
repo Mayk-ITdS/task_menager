@@ -1,25 +1,23 @@
 
 let counter=0;
-let task_list=document.getElementById('taskList');
-let button_container=getElementById('taskList');
+
+
 
 function addTask()
 {
-    const task_input=document.getElementById('taskInput').value;
+    let task_list=document.getElementById('taskList');
+    const task_input=document.getElementById('taskInput');
     
     if(task_input)
     {
         counter+=1;
         const task_create=document.createElement('li');
-        task_create.innerText=task_input;
-
+        task_create.innerHTML=`<span>${task_input.value}</span>
+                                <button onclick="finished(this)">Finished</button>
+                                <button onclick="delete_(this)">Delete</button>`;
         task_list.appendChild(task_create);
-
-        document.getElementById('taskInput').value='';
-        document.getElementById('button_1').value='block';
-
-        const button_1=document.createElement('button').innerHTML='<button id=button_1 onclick="finished()">Finished</button>';
-        document.getElementsByClassName('task-app').div.div.innerText= button_1;
+        task_input.value='';
+     
     }
     else
     {
@@ -29,3 +27,15 @@ function addTask()
 
 
 }
+    function finished(button)
+    {
+        let task_item=button.parentNode;
+        task_item.classList.toggle('completed');
+
+
+    }
+    function delete_(button)
+    {
+        let task_item=button.parentNode;
+        task_item.remove();
+    }
